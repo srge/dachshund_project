@@ -62,3 +62,9 @@ class JaccardTest(TestCase):
 
 	def test_calculate_jaccard(self):
 		self.fail('Implement this test')
+
+
+class ConsensusTest(TestCase):
+    
+    def test_calc_consensus_finds_consensus(self):
+        self.fail('Implement this test')
