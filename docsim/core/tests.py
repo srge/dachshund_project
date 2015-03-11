@@ -26,3 +26,27 @@ class CosineTest(TestCase):
 
     def test_calc_cos_returns_cosinine_similarity(self):
         self.fail('Implement this test')
+
+
+class SorensenTest(TestCase):
+
+	def test_build_intersection_set(self):
+		self.fail('Implement this test')
+
+	def test_build_union_set(self):
+		self.fail('Implement this test')
+
+	def test_calculate_sorensen(self):
+		self.fail('Implement this test')
+
+
+class JaccardTest(TestCase):
+
+	def test_build_intersection_set(self):
+		self.fail('Implement this test')
+
+	def test_build_union_set(self):
+		self.fail('Implement this test')
+
+	def test_calculate_jaccard(self):
+		self.fail('Implement this test')
