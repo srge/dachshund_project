@@ -13,6 +13,18 @@ class UtilsTest(TestCase):
         self.fail('Implement this test')
 
 
+class LevenshteinTest(TestCase):
+
+    def test_calc_lev_calculates_distance(self):
+        self.fail('Implement this test')
+
+
+class HammingTest(TestCase):
+
+    def test_calc_ham_calculates_distance(self):
+        self.fail('Implement this test')
+
+
 class CosineTest(TestCase):
 
     def test_term_freq_finds_each_word_count(self):
