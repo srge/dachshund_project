@@ -9,6 +9,14 @@ class DocDistance(object):
         raise NotImplementedError
 
 
+class Levenshtein(DocDistance):
+    def __init__(self, list_a, list_b):
+        DocDistance.__init__(self, list_a, list_b)
+
+    def calculate_dist(self):
+        return distance.nlevenshtein(self.list_a, self.list_b)
+
+
 class Hamming(DocDistance):
     def __init__(self, list_a, list_b):
         DocDistance.__init__(self, list_a, list_b)
