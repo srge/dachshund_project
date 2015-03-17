@@ -75,10 +75,14 @@ class SorensenTest(TestCase):
         test_list_b = ["The", "dog", "in", "the", "car"]
         expected = ["The", "in", "the"]
         actual = setsimilarity.Sorensen(test_list_a, test_list_b).build_intersect()
-        self.fail('Implement this test')
+        self.assertListEqual(expected, actual, "Lists should be equal")
 
     def test_build_union_set(self):
-        self.fail('Implement this test')
+        test_list_a = ["The", "cat", "in"]
+        test_list_b = ["the", "hat"]
+        expected = ["The", "cat", "in", "the", "hat"]
+        actual = setsimilarity.Sorensen(test_list_a, test_list_b).build_union()
+        self.assertListEqual(expected, actual, "Lists should be equal")
 
     def test_calculate_sorensen(self):
         self.fail('Implement this test')
