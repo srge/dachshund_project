@@ -1,5 +1,5 @@
 from django.test import TestCase
-from core import utils, distance.hamming
+from core import utils, docdistance
 
 class UtilsTest(TestCase):
 
@@ -42,8 +42,8 @@ class HammingTest(TestCase):
         test_list_a = ['the', 'cow', 'jumped', 'over', 'the', 'moon']
         test_list_b = ['the', 'cat', 'jumped', 'into', 'the', 'sun']
         expected = 0.5
-        self.assertAlmostEqual(expected, hamming.calculate_dist(test_list_a,
-                test_list_b)
+        actual = docdistance.Hamming(test_list_a, test_list_b).calculate_dist()
+        self.assertAlmostEqual(expected, actual)
 
 
 class CosineTest(TestCase):
