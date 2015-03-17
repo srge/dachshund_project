@@ -15,7 +15,13 @@ class UtilsTest(TestCase):
         self.fail('Implement this test')
 
     def test_can_stem_words(self):
-        self.fail('Implement this test')
+        test_list = ['Scientists', 'are', 'reading', 'mostly', 'everything',
+                'on', 'the', 'internet']
+        list_expected = ['sci', 'are', 'read', 'most', 'everyth', 'on', 'the',
+                'internet']
+        list_actual = utils.stem_words(test_list)
+        self.assertListEqual(list_expected, list_actual,
+                "Lists should be equal")
 
 
 class LevenshteinTest(TestCase):
