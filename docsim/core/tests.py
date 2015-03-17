@@ -56,7 +56,12 @@ class HammingTest(TestCase):
 class CosineTest(TestCase):
 
     def test_term_freq_finds_each_word_count(self):
-        self.fail('Implement this test')
+        test_list_words = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana'
+                           'apple', 'banana', 'pear', 'orange', 'banana', 'pear']
+        dict_expected = {'apple' : 3, 'banana' : 3, 'pear' : 3, 'orange' : 3 }
+        dict_actual = cosine.term_freq(test_list_words)
+        self.assertDictEqual(dict_expected, dict_actual,
+                "term frequency dictionaries do not have the same keys and values")
 
     def test_inverse_doc_freq_finds_idf(self):
         self.fail('Implement this test')
