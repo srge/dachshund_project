@@ -23,7 +23,7 @@ class UtilsTest(TestCase):
     def test_can_stem_words(self):
         test_list = ['Scientists', 'are', 'reading', 'mostly', 'everything',
                 'on', 'the', 'internet']
-        list_expected = ['sci', 'are', 'read', 'most', 'everyth', 'on', 'the',
+        list_expected = ['sci', 'ar', 'read', 'most', 'everyth', 'on', 'the',
                 'internet']
         list_actual = utils.stem_words(test_list)
         self.assertListEqual(list_expected, list_actual,
