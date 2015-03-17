@@ -1,13 +1,20 @@
 from django.test import TestCase
 
-
 class UtilsTest(TestCase):
 
     def test_can_tokenize(self):
         self.fail('Implement this test')
 
     def test_can_remove_stop_words(self):
-        self.fail('Implement this test')
+        list_original = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
+                         'quick', 'brown', 'fox', 'why', 'how', 'all',
+                         'any', 'both', 'each']
+
+        list_expected = ['quick', 'brown', 'fox']
+
+        list_actual = remove_stop_words(list_original)
+
+        self.assertListEqual(list_expected, list_actual, "Stop Words not removed correctly.")
 
     def test_can_stem_words(self):
         self.fail('Implement this test')
@@ -65,6 +72,6 @@ class JaccardTest(TestCase):
 
 
 class ConsensusTest(TestCase):
-    
+
     def test_calc_consensus_finds_consensus(self):
         self.fail('Implement this test')
