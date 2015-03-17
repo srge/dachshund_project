@@ -58,20 +58,42 @@ class CosineTest(TestCase):
     def test_term_freq_finds_each_word_count(self):
         test_list_words = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana'
                            'apple', 'banana', 'pear', 'orange', 'banana', 'pear']
-        dict_expected = {'apple' : 3, 'banana' : 3, 'pear' : 3, 'orange' : 3 }
+        dict_expected = {'apple' : 3, 'banana' : 3, 'orange' : 3, 'pear' : 3}
         dict_actual = cosine.term_freq(test_list_words)
         self.assertDictEqual(dict_expected, dict_actual,
                 "term frequency dictionaries do not have the same keys and values")
 
     def test_inverse_doc_freq_finds_idf(self):
-        self.fail('Implement this test')
+        test_dict_tf = {'apple' : 1, 'banana' : 2, 'orange' : 2, 'pear' : 1}
+        dict_expected = {'apple' : 2, 'banana' : 1, 'orange' : 1, 'pear' : 2}
+        dict_actual = cosine.inverse_doc_freq(test_dict_tf)
+        for key in dict_expected:
+            if key not in dict_actual:
+                self.fail(key + 'is in expected but not actual')
+            else:
+                self.assertAlmostEqual(dict_expected[key], dict_actual[key],
+                    msg="IDF vectors are not the almost equal at key: "+key)
 
     def test_can_calculate_tf_idf(self):
-        self.fail('Implement this test')
+        test_dict_tf = {'apple' : 3, 'banana' : 3, 'orange' : 3, 'pear' : 3}
+        test_dict_idf = {'apple': 2, 'banana': 1, 'orange': 1, 'pear': 2}
+        dict_expected = {'apple': 0.9030899869919435, 'pear': 0.9030899869919435,
+                         'banana': 0.0, 'orange': 0.0}
+        dict_actual = cosine.tf_idf(test_dict_tf, test_dict_idf)
+        for key in dict_expected:
+            if key not in dict_actual:
+                self.fail(key + 'is in expected but not actual')
+            else:
+                self.assertAlmostEqual(dict_expected[key], dict_actual[key],
+                    msg="TF-IDF vectors are not the almost equal at key: "+key)
 
     def test_calc_cos_returns_cosinine_similarity(self):
-        self.fail('Implement this test')
+        test_dict_tf_idf = {'apple': 0.9030899869919435, 'pear': 0.9030899869919435,
+                         'banana': 0.0, 'orange': 0.0}
+        expected = 1.0
+        actual = cosine.calc_cos(test_dict_tf_idf, test_dict_tf_idf)
 
+        self.assertAlmostEqual(expected, actual, msg="cosine value is not almost equal")
 
 class SorensenTest(TestCase):
 
