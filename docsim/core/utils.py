@@ -1,10 +1,8 @@
-import nltk
+from nltk import word_tokenize
 from nltk.stem.lancaster import LancasterStemmer
 
 def tokenize(test_string):
-    words = nltk.word_tokenize(test_string)
-
-    return words
+    return word_tokenize(test_string)
 
 
 def stem_words(test_list):
