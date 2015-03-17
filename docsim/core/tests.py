@@ -16,7 +16,7 @@ class UtilsTest(TestCase):
                          'quick', 'brown', 'fox', 'why', 'how', 'all',
                          'any', 'both', 'each']
         list_expected = ['quick', 'brown', 'fox']
-        list_actual = remove_stop_words(list_original)
+        list_actual = utils.remove_stop_words(list_original)
         self.assertListEqual(list_expected, list_actual,
                 "Stop Words not removed correctly.")
 
