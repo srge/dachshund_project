@@ -1,20 +1,24 @@
 from django.test import TestCase
+from core import utils
 
 class UtilsTest(TestCase):
 
     def test_can_tokenize(self):
-        self.fail('Implement this test')
+        test_string = 'The quick brown fox jumps over the lazy dog.'
+        list_expected = ['The', 'quick', 'brown', 'fox', 'jumps', 'over',
+                'the', 'lazy', 'dog', '.']
+        list_actual = utils.tokenize(test_string)
+        self.assertListEqual(list_expected, list_actual,
+                "Lists should be equal")
 
     def test_can_remove_stop_words(self):
         list_original = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
                          'quick', 'brown', 'fox', 'why', 'how', 'all',
                          'any', 'both', 'each']
-
         list_expected = ['quick', 'brown', 'fox']
-
         list_actual = remove_stop_words(list_original)
-
-        self.assertListEqual(list_expected, list_actual, "Stop Words not removed correctly.")
+        self.assertListEqual(list_expected, list_actual,
+                "Stop Words not removed correctly.")
 
     def test_can_stem_words(self):
         self.fail('Implement this test')
