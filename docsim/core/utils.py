@@ -17,5 +17,4 @@ def stem_words(list_words):
 
 
 def remove_stop_words(list_words):
-    list_result = [w for w in list_words if w not in stopwords.words('english')]
-    return list_result
+    return [w for w in list_words if w not in stopwords.words('english')]
