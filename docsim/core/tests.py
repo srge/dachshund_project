@@ -1,5 +1,5 @@
 from django.test import TestCase
-from core import utils, docdistance
+from core import utils, docdistance, setsimilarity
 
 class UtilsTest(TestCase):
 
@@ -36,8 +36,8 @@ class LevenshteinTest(TestCase):
         test_list_a = ['A', 'pocket', 'full', 'of', 'posies', 'ashes',
                        'ashes', 'we', 'all', 'fall', 'down']
         test_list_b = ['pocket', 'full', 'of', 'posies', 'ashes']
-        actual = docdistance.Levenshtein.(test_list_a, test_list_b).calculate_dist()
-        self.assertAlmostEqual(0.5454545454, result,
+        actual = docdistance.Levenshtein(test_list_a, test_list_b).calculate_dist()
+        self.assertAlmostEqual(0.5454545454, actual,
                 "Normalized Levenshtein calculate dist not as expected")
 
 
@@ -69,6 +69,10 @@ class CosineTest(TestCase):
 class SorensenTest(TestCase):
 
     def test_build_intersection_set(self):
+        test_list_a = ["The", "cat", "in", "the", "hat"]
+        test_list_b = ["The", "dog", "in", "the", "car"]
+        expected = ["The", "in", "the"]
+        actual = setsimilarity.Sorensen(test_list_a, test_list_b).build_intersect()
         self.fail('Implement this test')
 
     def test_build_union_set(self):
