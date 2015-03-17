@@ -33,8 +33,11 @@ class UtilsTest(TestCase):
 class LevenshteinTest(TestCase):
 
     def test_calc_lev_calculates_distance(self):
-        self.fail('Implement this test')
-
+        test_list_a = ['A', 'pocket', 'full', 'of', 'posies', 'ashes',
+                       'ashes', 'we', 'all', 'fall', 'down']
+        test_list_b = ['pocket', 'full', 'of', 'posies', 'ashes']
+        result = DocDistance.levenshtein.calculate_dist(test_list_a, test_list_b)
+        self.assertAlmostEqual(0.5454545454, result, "Normalized Levenshtein calculate dist not as expected")
 
 class HammingTest(TestCase):
 
