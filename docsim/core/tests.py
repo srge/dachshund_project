@@ -12,7 +12,13 @@ class UtilsTest(TestCase):
                 "Lists should be equal")
 
     def test_can_remove_stop_words(self):
-        self.fail('Implement this test')
+        test_list = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
+                         'quick', 'brown', 'fox', 'why', 'how', 'all',
+                         'any', 'both', 'each']
+        list_expected = ['quick', 'brown', 'fox']
+        list_actual = utils.remove_stop_words(test_list)
+        self.assertListEqual(list_expected, list_actual,
+                "Stop Words not removed correctly.")
 
     def test_can_stem_words(self):
         test_list = ['Scientists', 'are', 'reading', 'mostly', 'everything',
@@ -76,6 +82,6 @@ class JaccardTest(TestCase):
 
 
 class ConsensusTest(TestCase):
-    
+
     def test_calc_consensus_finds_consensus(self):
         self.fail('Implement this test')
