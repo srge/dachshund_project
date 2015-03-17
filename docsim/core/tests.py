@@ -106,13 +106,17 @@ class SorensenTest(TestCase):
 
     def test_build_union_set(self):
         test_list_a = ["The", "cat", "in"]
-        test_list_b = ["the", "hat"]
+        test_list_b = ["the", "hat", "in"]
         expected = ["The", "cat", "in", "the", "hat"]
         actual = setsimilarity.Sorensen(test_list_a, test_list_b).build_union()
         self.assertCountEqual(expected, actual, "Lists should be equal")
 
     def test_calculate_sorensen(self):
-        self.fail('Implement this test')
+        test_list_a = ["The", "lone", "cowboy"]
+        test_list_b = ["The", "western", "cowboy"]
+        expected = 2*2/4
+        actual = setsimilarity.Sorensen(test_list_a, test_list_b).calculate_sim()
+        self.assertAlmostEqual(expected, actual, "Results should be same")
 
 
 class JaccardTest(TestCase):
@@ -126,13 +130,17 @@ class JaccardTest(TestCase):
 
     def test_build_union_set(self):
         test_list_a = ["The", "cat", "in"]
-        test_list_b = ["the", "hat"]
+        test_list_b = ["the", "hat", "in"]
         expected = ["The", "cat", "in", "the", "hat"]
         actual = setsimilarity.Jaccard(test_list_a, test_list_b).build_union()
         self.assertCountEqual(expected, actual, "Lists should be equal")
 
     def test_calculate_jaccard(self):
-        self.fail('Implement this test')
+        test_list_a = ["The", "lone", "cowboy"]
+        test_list_b = ["The", "western", "cowboy"]
+        expected = 2/4
+        actual = setsimilarity.Jaccard(test_list_a, test_list_b).calculate_sim()
+        self.assertAlmostEqual(expected, actual, "Results should be same")
 
 
 class ConsensusTest(TestCase):
