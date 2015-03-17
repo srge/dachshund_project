@@ -12,11 +12,11 @@ class UtilsTest(TestCase):
                 "Lists should be equal")
 
     def test_can_remove_stop_words(self):
-        list_original = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
+        test_list = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours',
                          'quick', 'brown', 'fox', 'why', 'how', 'all',
                          'any', 'both', 'each']
         list_expected = ['quick', 'brown', 'fox']
-        list_actual = utils.remove_stop_words(list_original)
+        list_actual = utils.remove_stop_words(test_list)
         self.assertListEqual(list_expected, list_actual,
                 "Stop Words not removed correctly.")
 
