@@ -11,7 +11,8 @@ class DocsimTests(LiveServerTestCase):
         self.browser.quit()
 
     def test_home_page_renders(self):
-        self.fail('Implement this test')
+        self.browser.get('http://localhost:8000')
+        self.assertIn('Dachshund', self.browser.title)
 
     def test_user_can_submit_form(self):
         self.fail('Implement this test')
