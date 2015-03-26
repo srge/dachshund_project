@@ -1,5 +1,5 @@
 from django.test import TestCase
-from core import utils, docdistance, setsimilarity
+from core import utils, docdistance, setsimilarity, cosine
 
 class UtilsTest(TestCase):
 
@@ -56,17 +56,21 @@ class HammingTest(TestCase):
 class CosineTest(TestCase):
 
     def test_term_freq_finds_each_word_count(self):
-        test_list_words = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana'
+        test_list_words = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana',
                            'apple', 'banana', 'pear', 'orange', 'banana', 'pear']
         dict_expected = {'apple' : 3, 'banana' : 3, 'orange' : 3, 'pear' : 3}
-        dict_actual = cosine.term_freq(test_list_words)
+        dict_actual = cosine.Cosine('test1', 'test2').term_freq(test_list_words)
         self.assertDictEqual(dict_expected, dict_actual,
                 "term frequency dictionaries do not have the same keys and values")
 
     def test_inverse_doc_freq_finds_idf(self):
-        test_dict_tf = {'apple' : 1, 'banana' : 2, 'orange' : 2, 'pear' : 1}
-        dict_expected = {'apple' : 2, 'banana' : 1, 'orange' : 1, 'pear' : 2}
-        dict_actual = cosine.inverse_doc_freq(test_dict_tf)
+        test_list_ab = ['apple', 'banana', 'orange', 'pear']
+        test_dict_tf_a = ['apple', 'banana', 'orange', 'pear']
+        test_dict_tf_b = ['apple', 'banana', 'orange']
+        dict_expected = {'apple': 0, 'banana': 0, 'orange': 0.0,
+                         'pear': 0.3010299956639812}
+        dict_actual = cosine.Cosine('test1', 'test2').inverse_doc_freq(test_list_ab,
+                                                        test_dict_tf_a, test_dict_tf_b)
         for key in dict_expected:
             if key not in dict_actual:
                 self.fail(key + 'is in expected but not actual')
@@ -77,9 +81,8 @@ class CosineTest(TestCase):
     def test_can_calculate_tf_idf(self):
         test_dict_tf = {'apple' : 3, 'banana' : 3, 'orange' : 3, 'pear' : 3}
         test_dict_idf = {'apple': 2, 'banana': 1, 'orange': 1, 'pear': 2}
-        dict_expected = {'apple': 0.9030899869919435, 'pear': 0.9030899869919435,
-                         'banana': 0.0, 'orange': 0.0}
-        dict_actual = cosine.tf_idf(test_dict_tf, test_dict_idf)
+        dict_expected = {'apple': 6, 'pear': 6, 'banana': 3, 'orange': 3}
+        dict_actual = cosine.Cosine('test1', 'test2').tf_idf(test_dict_tf, test_dict_idf)
         for key in dict_expected:
             if key not in dict_actual:
                 self.fail(key + 'is in expected but not actual')
@@ -91,7 +94,8 @@ class CosineTest(TestCase):
         test_dict_tf_idf = {'apple': 0.9030899869919435, 'pear': 0.9030899869919435,
                          'banana': 0.0, 'orange': 0.0}
         expected = 1.0
-        actual = cosine.calc_cos(test_dict_tf_idf, test_dict_tf_idf)
+        self.fail('implement and fix me')
+        actual = cosine.Cosine('test1', 'test2').calc_cos(test_dict_tf_idf, test_dict_tf_idf)
 
         self.assertAlmostEqual(expected, actual, msg="cosine value is not almost equal")
 

@@ -39,7 +39,7 @@
       <systemSitePackages>false</systemSitePackages>
       <nature>shell</nature>
       <command>pip install -r requirements.txt
-pip install selenium==2.45
+python nltk_setup.py
 cd docsim
 python manage.py test
 
