@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+class Comparison(models.Model):
+    doc_a = models.TextField()
+    doc_b = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
