@@ -1,13 +1,33 @@
 from django.test import TestCase
+from comparisons.models import Comparison
 
 
 class ComparisonModelTest(TestCase):
 
     def test_can_save_model_data(self):
-        self.fail('Implement this test')
+        comp = Comparison()
+        comp.doc_a = 'Hello test'
+        comp.doc_b = 'Bye test'
+        comp.save()
+
+        self.assertEqual(Comparison.objects.all().count(), 1)
+
 
     def test_can_retrieve_model_data(self):
-        self.fail('Implement this test')
+        comp1 = Comparison()
+        comp1.doc_a = 'Hello 1'
+        comp1.doc_b = 'Bye 1'
+        comp1.save()
+
+        comp2 = Comparison()
+        comp2.doc_a = 'Hello 2'
+        comp2.doc_b = 'Bye 2'
+        comp2.save()
+
+        saved_comps = Comparison.objects.all()
+
+        self.assertEqual(saved_comps[0].doc_a, 'Hello 1')
+        self.assertEqual(saved_comps[1].doc_b, 'Bye 2')
 
 
 class HomePageTest(TestCase):
