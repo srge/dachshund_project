@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from comparisons.models import Comparison
 
+
 def home_page(request):
     if request.method == 'POST':
         comparison = Comparison()
@@ -16,3 +17,9 @@ def home_page(request):
             return redirect('/')
 
     return render(request, 'base.html')
+
+def get_results(request):
+    if not 'HTTP_REFERER' in request.META:
+        return redirect('/')
+
+    return render(request, 'results.html')
