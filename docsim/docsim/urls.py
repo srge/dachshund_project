@@ -6,6 +6,7 @@ from docsim import views
 
 urlpatterns = patterns('',
     #url(r'^$', views.home, name='home'),
-    url(r'^$', include('comparisons.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', include('comparisons.urls')),
+    url(r'^', include('comparisons.urls')),
 )
