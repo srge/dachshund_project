@@ -1,5 +1,7 @@
 from django.test import TestCase
 from comparisons.models import Comparison
+from django.http import HttpRequest
+from comparisons.views import get_results
 
 
 class ComparisonModelTest(TestCase):
@@ -69,4 +71,7 @@ class ResultsPageTest(TestCase):
         self.fail('Implement this test')
 
     def test_redirects_home_if_page_visited_arbitrarily(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        response = get_results(request)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/')
