@@ -13,10 +13,12 @@ def home_page(request):
             context = {'test':'test',}
 
             return redirect('/results/')
+
         else:
             return redirect('/')
 
     return render(request, 'base.html')
+
 
 def get_results(request):
     if not 'HTTP_REFERER' in request.META:
