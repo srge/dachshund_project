@@ -1,5 +1,8 @@
+from django.http import HttpRequest
+from django.template.loader import render_to_string
 from django.test import TestCase
 from comparisons.models import Comparison
+from comparisons.views import home_page
 
 
 class ComparisonModelTest(TestCase):
@@ -33,16 +36,44 @@ class ComparisonModelTest(TestCase):
 class HomePageTest(TestCase):
 
     def test_home_page_renders_home_template(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        response = home_page(request)
+        expected_html = render_to_string('base.html')
+        self.assertEqual(response.content.decode(), expected_html)
+
 
     def test_home_page_can_save_POST(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST['doc_a'] = 'Hello A'
+        request.POST['doc_b'] = 'Hello B'
+
+        response = home_page(request)
+
+        self.assertEqual(Comparison.objects.count(), 1)
+        comp = Comparison.objects.first()
+        self.assertEqual(comp.doc_a, 'Hello A')
+        self.assertEqual(comp.doc_b, 'Hello B')
+
 
     def test_home_page_redirects_after_POST(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST['doc_a'] = 'Hello A'
+        request.POST['doc_b'] = 'Hello B'
+
+        response = home_page(request)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/results/')
+
 
     def test_does_not_save_if_form_is_incomplete(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST['doc_a'] = 'Hello A'
+        response = home_page(request)
+
+        self.assertEqual(Comparison.objects.all().count(), 0)
 
 
 class ResultsPageTest(TestCase):
