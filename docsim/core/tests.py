@@ -67,8 +67,8 @@ class CosineTest(TestCase):
         test_list_ab = ['apple', 'banana', 'orange', 'pear']
         test_dict_tf_a = ['apple', 'banana', 'orange', 'pear']
         test_dict_tf_b = ['apple', 'banana', 'orange']
-        dict_expected = {'apple': 0, 'banana': 0, 'orange': 0.0,
-                         'pear': 0.3010299956639812}
+        dict_expected = {'apple': 1, 'banana': 1, 'orange': 1,
+                         'pear': 2}
         dict_actual = cosine.Cosine('test1', 'test2').inverse_doc_freq(test_list_ab,
                                                         test_dict_tf_a, test_dict_tf_b)
         for key in dict_expected:
@@ -94,9 +94,7 @@ class CosineTest(TestCase):
         test_dict_tf_idf = {'apple': 0.9030899869919435, 'pear': 0.9030899869919435,
                          'banana': 0.0, 'orange': 0.0}
         expected = 1.0
-        self.fail('implement and fix me')
         actual = cosine.Cosine('test1', 'test2').calc_cos(test_dict_tf_idf, test_dict_tf_idf)
-
         self.assertAlmostEqual(expected, actual, msg="cosine value is not almost equal")
 
 class SorensenTest(TestCase):
