@@ -1,4 +1,5 @@
 import distance
+from core.utils import match_list_size
 
 class DocDistance(object):
     def __init__(self, list_a, list_b):
@@ -19,7 +20,7 @@ class Levenshtein(DocDistance):
 
 class Hamming(DocDistance):
     def __init__(self, list_a, list_b):
-        # TODO reduce to the shorter of the list size
+        match_list_size(list_a, list_b)
         DocDistance.__init__(self, list_a, list_b)
 
     def calculate_dist(self):

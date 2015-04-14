@@ -18,3 +18,13 @@ def stem_words(list_words):
 
 def remove_stop_words(list_words):
     return [w for w in list_words if w not in stopwords.words('english')]
+
+
+def match_list_size(list_a, list_b):
+    diff = len(list_a) - len(list_b)
+    if diff > 0:
+        list_b.extend([""]*diff)
+    elif diff < 0:
+        list_a.extend([""]*-diff)
+
+    return

@@ -29,6 +29,25 @@ class UtilsTest(TestCase):
         self.assertListEqual(list_expected, list_actual,
                 "Lists should be equal")
 
+    def test_can_match_list_size(self):
+        list_1 = ["test"]
+        list_2 = ["one", "two", "three"]
+        utils.match_list_size(list_1, list_2)
+        self.assertEqual(len(list_1), 3)
+        self.assertEqual(len(list_1), len(list_2))
+
+        list_3 = ["one", "two", "three"]
+        list_4 = ["test"]
+        utils.match_list_size(list_3, list_4)
+        self.assertEqual(len(list_4), 3)
+        self.assertEqual(len(list_3), len(list_4))
+
+        list_5 = ["test"]
+        list_6 = ["one"]
+        utils.match_list_size(list_5, list_6)
+        self.assertEqual(len(list_5), 1)
+        self.assertEqual(len(list_5), len(list_6))
+
 
 class LevenshteinTest(TestCase):
 
