@@ -64,7 +64,6 @@ class HomePageTest(TestCase):
 
         response = home_page(request)
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/results/')
 
 
     def test_does_not_save_if_form_is_incomplete(self):
@@ -77,24 +76,65 @@ class HomePageTest(TestCase):
 
 
 class ResultsPageTest(TestCase):
+    def setUp(self):
+        request = HttpRequest()
+        request.method = 'POST'
+        request.POST['doc_a'] = 'Hello'
+        request.POST['doc_b'] = 'Hello'
+
+        self.response = home_page(request)
 
     def test_results_page_renders_results_template(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+        exp_cont = {
+                'doc_a': 'Hello',
+                'doc_b': 'Hello',
+                'cos': 1.0,
+                'jac': 1.0,
+                'sor': 2.0,
+                'lev': 0,
+                'ham': 0,
+                }
+
+        expected_html = render_to_string('results.html', exp_cont)
+        self.assertEqual(response.content.decode(), expected_html)
 
     def test_results_page_context_contains_cosine(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+
+        self.assertIn('Cosine', response.content.decode())
 
     def test_results_page_context_contains_hamming(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+
+        self.assertIn('Hamming', response.content.decode())
 
     def test_results_page_context_contains_levenshtein(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+
+        self.assertIn('Levenshtein', response.content.decode())
 
     def test_results_page_context_contains_sorensen(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+
+        self.assertIn('Sorensen', response.content.decode())
 
     def test_results_page_context_contains_jaccard(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+
+        self.assertIn('Jaccard', response.content.decode())
 
     def test_results_page_context_contains_consensus(self):
         self.fail('Implement this test')
