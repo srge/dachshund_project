@@ -56,7 +56,7 @@ class DocsimTests(LiveServerTestCase):
         button.click()
 
         table = self.browser.find_element_by_id('id_results')
-        rows = table.find_elements_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('td')
 
         self.assertIn('Cosine:', [row.text for row in rows])
 
@@ -70,7 +70,7 @@ class DocsimTests(LiveServerTestCase):
         button.click()
 
         table = self.browser.find_element_by_id('id_results')
-        rows = table.find_elements_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('td')
 
         self.assertIn('Hamming:', [row.text for row in rows])
 
@@ -84,7 +84,7 @@ class DocsimTests(LiveServerTestCase):
         button.click()
 
         table = self.browser.find_element_by_id('id_results')
-        rows = table.find_elements_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('td')
 
         self.assertIn('Levenshtein:', [row.text for row in rows])
 
@@ -99,7 +99,7 @@ class DocsimTests(LiveServerTestCase):
         button.click()
 
         table = self.browser.find_element_by_id('id_results')
-        rows = table.find_elements_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('td')
 
         self.assertIn('Sorensen:', [row.text for row in rows])
 
@@ -113,7 +113,7 @@ class DocsimTests(LiveServerTestCase):
         button.click()
 
         table = self.browser.find_element_by_id('id_results')
-        rows = table.find_elements_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('td')
 
         self.assertIn('Jaccard:', [row.text for row in rows])
 

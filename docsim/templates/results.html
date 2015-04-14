@@ -5,16 +5,28 @@
 <body>
 <p>
 Document Similarity Results:
+<br>
+<br>
+Doc a:
+<br>
+{{ doc_a }}
+<br>
+<br>
+Doc b:
+<br>
+{{ doc_b }}
 </p>
 <p>
 <table id="id_results">
-    <tr><td>Jaccard: {{ jac }}</td></tr>
-    <tr><td>Sorensen: {{ sor }}</td></tr>
-    <tr><td>Hamming: {{ ham }}</td></tr>
-    <tr><td>Levenshtein: {{ lev }}</td></tr>
-    <tr><td>Cosine: {{ cos }}</td></tr>
+    <tr><td>Jaccard:</td><td> {{ jac }}</td></tr>
+    <tr><td>Sorensen:</td><td> {{ sor }}</td></tr>
+    <tr><td>Hamming:</td><td> {{ ham }}</td></tr>
+    <tr><td>Levenshtein:</td><td> {{ lev }}</td></tr>
+    <tr><td>Cosine:</td><td> {{ cos }}</td></tr>
 </table>
 </p>
-
+<p>
+<a href="/">Submit another comparison</a>
+</p>
 </body>
 </html>
