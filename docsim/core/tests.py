@@ -36,7 +36,8 @@ class LevenshteinTest(TestCase):
         test_list_a = ['A', 'pocket', 'full', 'of', 'posies', 'ashes',
                        'ashes', 'we', 'all', 'fall', 'down']
         test_list_b = ['pocket', 'full', 'of', 'posies', 'ashes']
-        expected = 0.5454545454
+        #expected = 0.5454545454
+        expected = 6
         actual = docdistance.Levenshtein(test_list_a, test_list_b).calculate_dist()
         self.assertAlmostEqual(expected, actual,
                 msg="Normalized Levenshtein calculate dist not as expected")
@@ -47,7 +48,8 @@ class HammingTest(TestCase):
     def test_calc_ham_calculates_distance(self):
         test_list_a = ['the', 'cow', 'jumped', 'over', 'the', 'moon']
         test_list_b = ['the', 'cat', 'jumped', 'into', 'the', 'sun']
-        expected = 0.5
+        #expected = 0.5
+        expected = 3
         actual = docdistance.Hamming(test_list_a, test_list_b).calculate_dist()
         self.assertAlmostEqual(expected, actual,
                 msg="Normalized Hamming calculate dist not as expected")
