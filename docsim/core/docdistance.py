@@ -15,7 +15,7 @@ class Levenshtein(DocDistance):
         DocDistance.__init__(self, list_a, list_b)
 
     def calculate_dist(self):
-        return distance.levenshtein(self.list_a, self.list_b)
+        return 1-distance.nlevenshtein(self.list_a, self.list_b, method=1)
 
 
 class Hamming(DocDistance):
@@ -24,4 +24,4 @@ class Hamming(DocDistance):
         DocDistance.__init__(self, list_a, list_b)
 
     def calculate_dist(self):
-        return distance.hamming(self.list_a, self.list_b)
+        return 1-distance.hamming(self.list_a, self.list_b, normalized=True)
