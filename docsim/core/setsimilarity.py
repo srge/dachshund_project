@@ -30,7 +30,7 @@ class Sorensen(SetSimilarity):
         return self.union
 
     def calculate_sim(self):
-        return 2 * len(self.intersect) / len(self.union)
+        return (2 * len(self.intersect) / len(self.union))/2
 
 
 class Jaccard(SetSimilarity):
