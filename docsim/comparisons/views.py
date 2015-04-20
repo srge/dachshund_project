@@ -36,4 +36,5 @@ def get_results(request, id_c=1):
             'ham': results['ham'],
             'lev': results['lev'],
             'cos': results['cos'],
+            'var': results['var']
         })

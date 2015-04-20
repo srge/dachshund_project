@@ -4,6 +4,7 @@ from core.docdistance import Hamming
 from core.docdistance import Levenshtein
 from core.setsimilarity import Sorensen
 from core.setsimilarity import Jaccard
+from statistics import mean, variance
 
 class Consensus(object):
 
@@ -24,4 +25,11 @@ class Consensus(object):
                 'lev': self.lev,
                 'cos': self.cos,
             }
+
+        data = results.values()
+        m = mean(data)
+        var = variance(data, m)
+
+        results['var'] = var
+
         return results

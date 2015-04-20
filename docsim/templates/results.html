@@ -24,6 +24,11 @@ Doc b:
     <tr><td>Levenshtein:</td><td> {{ lev }}</td></tr>
     <tr><td>Cosine:</td><td> {{ cos }}</td></tr>
 </table>
+<br>
+Variance: {{ var }}
+{% if var >= 0.10 %}
+    Warning: Variance between algorithms is greater than 10%!
+{% endif %}
 </p>
 <p>
 <a href="/">Submit another comparison</a>
