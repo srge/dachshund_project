@@ -167,9 +167,9 @@ class JaccardTest(TestCase):
 class ConsensusTest(TestCase):
 
     def test_calc_consensus_finds_consensus(self):
-        doc_a = "Hello test a"
-        doc_b = "Hello tree b"
-        expected = 0.004444
+        doc_a = "A sentence is a linguistic unit consisting of one or more words that are grammatically linked."
+        doc_b = "A sentence can include words grouped meaningfully to express a statement, question, exclamation, request, command or suggestion."
+        expected = 0.030804
         results = consensus.Consensus(doc_a, doc_b).get_consensus()
         actual = results['var']
-        self.assertAlmostEqual(expected, actual, msg="Results should be same")
+        self.assertAlmostEqual(expected, actual, 5, msg="Results should be same")
