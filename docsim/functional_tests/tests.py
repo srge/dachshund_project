@@ -118,4 +118,15 @@ class DocsimTests(LiveServerTestCase):
         self.assertIn('Jaccard:', [row.text for row in rows])
 
     def test_results_page_contains_consensus(self):
-        self.fail('Implement this test')
+        self.browser.get('http://localhost:8000')
+        doc_a = self.browser.find_element_by_id('id_doc_a')
+        doc_b = self.browser.find_element_by_id('id_doc_b')
+        doc_a.send_keys('Hello doc a')
+        doc_b.send_keys('Hello doc b')
+        button = self.browser.find_element_by_id('id_button')
+        button.click()
+
+        table = self.browser.find_element_by_id('id_results')
+        rows = table.find_elements_by_tag_name('td')
+
+        self.assertIn('Variance:', [row.text for row in rows])

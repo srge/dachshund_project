@@ -1,5 +1,5 @@
 from django.test import TestCase
-from core import utils, docdistance, setsimilarity, cosine
+from core import utils, docdistance, setsimilarity, cosine, consensus
 
 class UtilsTest(TestCase):
 
@@ -55,8 +55,7 @@ class LevenshteinTest(TestCase):
         test_list_a = ['A', 'pocket', 'full', 'of', 'posies', 'ashes',
                        'ashes', 'we', 'all', 'fall', 'down']
         test_list_b = ['pocket', 'full', 'of', 'posies', 'ashes']
-        #expected = 0.5454545454
-        expected = 6
+        expected = 0.454545454
         actual = docdistance.Levenshtein(test_list_a, test_list_b).calculate_dist()
         self.assertAlmostEqual(expected, actual,
                 msg="Normalized Levenshtein calculate dist not as expected")
@@ -67,8 +66,7 @@ class HammingTest(TestCase):
     def test_calc_ham_calculates_distance(self):
         test_list_a = ['the', 'cow', 'jumped', 'over', 'the', 'moon']
         test_list_b = ['the', 'cat', 'jumped', 'into', 'the', 'sun']
-        #expected = 0.5
-        expected = 3
+        expected = 0.5
         actual = docdistance.Hamming(test_list_a, test_list_b).calculate_dist()
         self.assertAlmostEqual(expected, actual,
                 msg="Normalized Hamming calculate dist not as expected")
@@ -137,9 +135,9 @@ class SorensenTest(TestCase):
     def test_calculate_sorensen(self):
         test_list_a = ["The", "lone", "cowboy"]
         test_list_b = ["The", "western", "cowboy"]
-        expected = 2*2/4
+        expected = 0.5
         actual = setsimilarity.Sorensen(test_list_a, test_list_b).calculate_sim()
-        self.assertAlmostEqual(expected, actual, "Results should be same")
+        self.assertAlmostEqual(expected, actual, msg="Results should be same")
 
 
 class JaccardTest(TestCase):
@@ -163,10 +161,15 @@ class JaccardTest(TestCase):
         test_list_b = ["The", "western", "cowboy"]
         expected = 2/4
         actual = setsimilarity.Jaccard(test_list_a, test_list_b).calculate_sim()
-        self.assertAlmostEqual(expected, actual, "Results should be same")
+        self.assertAlmostEqual(expected, actual, msg="Results should be same")
 
 
 class ConsensusTest(TestCase):
 
     def test_calc_consensus_finds_consensus(self):
-        self.fail('Implement this test')
+        doc_a = "Hello test a"
+        doc_b = "Hello tree b"
+        expected = 0.004444
+        results = consensus.Consensus(doc_a, doc_b).get_consensus()
+        actual = results['var']
+        self.assertAlmostEqual(expected, actual, msg="Results should be same")

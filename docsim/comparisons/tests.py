@@ -93,9 +93,10 @@ class ResultsPageTest(TestCase):
                 'doc_b': 'Hello',
                 'cos': 1.0,
                 'jac': 1.0,
-                'sor': 2.0,
-                'lev': 0,
-                'ham': 0,
+                'sor': 1.0,
+                'lev': 1.0,
+                'ham': 1.0,
+                'var': 0.0,
                 }
 
         expected_html = render_to_string('results.html', exp_cont)
@@ -137,7 +138,11 @@ class ResultsPageTest(TestCase):
         self.assertIn('Jaccard', response.content.decode())
 
     def test_results_page_context_contains_consensus(self):
-        self.fail('Implement this test')
+        request = HttpRequest()
+        request.META['HTTP_REFERER'] = 'test'
+        response = get_results(request)
+
+        self.assertIn('Variance', response.content.decode())
 
     def test_redirects_home_if_page_visited_arbitrarily(self):
         request = HttpRequest()

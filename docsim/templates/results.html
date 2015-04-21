@@ -23,9 +23,9 @@ Doc b:
     <tr><td>Hamming:</td><td> {{ ham }}</td></tr>
     <tr><td>Levenshtein:</td><td> {{ lev }}</td></tr>
     <tr><td>Cosine:</td><td> {{ cos }}</td></tr>
+    <tr><td>Variance:</td><td> {{ var }}</td></tr>
 </table>
 <br>
-Variance: {{ var }}
 {% if var >= 0.10 %}
     Warning: Variance between algorithms is greater than 10%!
 {% endif %}

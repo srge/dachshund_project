@@ -1,9 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from comparisons.models import Comparison
 from core.consensus import Consensus
+import re
 
 
 def home_page(request):
+    msg=''
+
+    if 'HTTP_REFERER' in request.META:
+        referer = request.META['HTTP_REFERER']
+        referer = re.sub('^https?:\/\/', '', referer).split('/')
+        if len(referer) == 2:
+            msg='Please submit both doc a and doc b'
+
+
     if request.method == 'POST':
         comparison = Comparison()
         comparison.doc_a = request.POST.get('doc_a', '')
@@ -15,9 +25,10 @@ def home_page(request):
             return redirect(get_results, id_c=comparison.id)
 
         else:
-            return redirect('/')
+            notify = "You must submit both doc a and doc b"
+            return redirect(home_page)
 
-    return render(request, 'base.html')
+    return render(request, 'base.html', {'msg':msg})
 
 
 def get_results(request, id_c=1):
