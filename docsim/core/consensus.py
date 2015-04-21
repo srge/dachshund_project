@@ -30,6 +30,8 @@ class Consensus(object):
         m = mean(data)
         var = variance(data, m)
 
-        results['var'] = var
+        varmean = var/m
+
+        results['var'] = varmean
 
         return results
