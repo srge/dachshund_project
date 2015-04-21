@@ -30,7 +30,10 @@ class Consensus(object):
         m = mean(data)
         var = variance(data, m)
 
-        varmean = var/m
+        if m != 0:
+            varmean = var/m
+        else:
+            varmean = var
 
         results['var'] = varmean
 
